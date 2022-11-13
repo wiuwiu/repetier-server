@@ -7,7 +7,8 @@ LABEL version="v${VERSION}"
 ADD http://download.repetier.com/files/server/debian-amd64/Repetier-Server-${VERSION}-Linux.deb repetier-server.deb
 
 # Add ffmpeg support.
-RUN apt install ffmpeg -y
+RUN apt update 2>/dev/null \
+    && apt install ffmpeg -y 2>/dev/null
 
 # Install with dpkg and remove the deb after.
 RUN dpkg --unpack repetier-server.deb \
